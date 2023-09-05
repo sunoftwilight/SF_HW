@@ -16,7 +16,8 @@
       margin-top: 5px;
     }
     input:focus {
-      outline: 1px solid rgb(0, 78, 245);
+      outline: 2px solid rgb(0, 78, 245);
+      border: none;
     }
   </style>
 </head>
@@ -27,6 +28,7 @@
   : <input type="text" name="us_pwd" id="us_pwd"> <button class="btn">로그인</button> -->
   <label for="us_name">USERNAME</label> 
   : <input class="name" type="text" name="us_name" id="us_name" placeholder="아이디를 입력 해 주세요."><br>
+  <!-- value는 안내문구가 아닌 기본적인 값을 삽입해둔 것 => 회원 정보 수정란 등에 사용 -->
   <label for="us_pwd">PWD</label> 
   : <input type="text" name="us_pwd" id="us_pwd"> <button class="btn">로그인</button>
 </body>
