@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>책의 상세한 내용은 말이다...</h1>
+  <p>등록 번호 .. "{{ book.pk }}"인데.. 어우 귀찮아</p>
+  <p>제목 말했잖아 아까.. "{{ book.title }}"라고..</p>
+  <p>이게 무슨 내용인지도 필요해...? "{{ book.description }}"라는 내용이다...</p>
+  <hr>
+
+  <h3>이정도 알려줬으면 리뷰 함 써봐라</h3>
+  {% if request.user.is_authenticated %}
+    <form action="#" method="POST">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <input type="submit" value="웅..쓸게..">
+    </form>
+  {% else %}
+    <h4>리뷰 쓰고싶으면 로그인부터 하고와라 애송이....</h4>
+  {% endif %}
+  <hr>
+
+  <h3>리뷰 전체 목록</h3>
+  <ul>
+    {% for review in reviews %}
+    <li>
+      <p>{{ review.user }} - {{ review.content }}
+        {% if request.user == review.user %}
+          <form action="{% url "libraries:delete" book.pk review.pk %}" method="POST">
+            {% csrf_token %}
+            <input type="submit" value="지울랭ㅋ">
+          </form>
+        {% endif %}
+      </p>
+    </li>
+    {% endfor %}
+  </ul>
+
+  <a href="{% url "libraries:index" %}">뒤로 보내줘잉</a>
+{% endblock content %}
